@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBSA 實戰診斷 | 你是 AI 時代的策略指揮官，還是高級工兵？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .step-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hidden-step { display: none; opacity: 0; transform: translateY(20px); }
+        .active-step { display: block; opacity: 1; transform: translateY(0); }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-indigo-900 rounded flex items-center justify-center text-white font-bold italic">T</div>
+                <span class="font-black text-xl tracking-tighter text-indigo-900 uppercase">TBSA <span class="font-normal text-slate-400">Strategic Review</span></span>
+            </div>
+            <div class="hidden md:block text-xs font-bold tracking-widest text-slate-400 uppercase">
+                AI 時代企劃進化指南
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-12 px-4">
+        <div class="max-w-3xl mx-auto">
+            
+            <!-- Intro Section -->
+            <section id="step-intro" class="active-step step-transition">
+                <div class="bg-indigo-900 rounded-3xl p-8 md:p-16 text-white shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-indigo-800 rounded-full opacity-50"></div>
+                    <div class="relative z-10">
+                        <span class="inline-block px-4 py-1 bg-indigo-500/30 rounded-full text-xs font-bold tracking-widest mb-6">STRATEGIC DIAGNOSIS</span>
+                        <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                            你是 AI 時代的<br>
+                            <span class="text-indigo-400">策略指揮官</span>，<br>
+                            還是高級工兵？
+                        </h1>
+                        <p class="text-indigo-100 text-lg mb-10 leading-relaxed max-w-xl">
+                            這是一份專為企劃人設計的「思維作業系統 (Logic OS)」體檢表。工具學不完，產出沒價值？5 分鐘看穿你的職涯競爭力瓶頸。
+                        </p>
+                        <button onclick="nextStep('intro', 'quiz')" class="bg-white text-indigo-900 font-black py-4 px-10 rounded-2xl hover:bg-indigo-50 transition-colors shadow-lg flex items-center gap-2 group">
+                            開始實戰診斷 <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center gap-8 grayscale opacity-40">
+                    <span class="text-xs font-bold">SOSTAC® 標準</span>
+                    <span class="text-xs font-bold">Logic OS 驅動</span>
+                    <span class="text-xs font-bold">職涯溢價校準</span>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="step-quiz" class="hidden-step step-transition">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200">
+                    <div class="flex justify-between items-center mb-8">
+                        <span class="text-xs font-black text-indigo-600 tracking-widest uppercase">第一部分：職場情境模擬</span>
+                        <span id="quiz-progress" class="text-xs font-bold text-slate-400 uppercase">Question 1 / 4</span>
+                    </div>
+                    
+                    <!-- Question Container -->
+                    <div id="questions">
+                        <!-- Q1 -->
+                        <div class="quiz-q block" data-idx="1">
+                            <h2 class="text-2xl font-bold mb-8 leading-snug">當主管丟給你一個模糊任務，例如「下個月辦一個增加會員的活動」，你的第一個反應是？</h2>
+                            <div class="grid gap-4">
+                                <button onclick="selectOption(1, 'A')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">A</span>
+                                    <span class="font-medium text-slate-600">立即打開電腦，搜尋現在最流行的活動案例或問 AI 創意。</span>
+                                </button>
+                                <button onclick="selectOption(1, 'B')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">B</span>
+                                    <span class="font-medium text-slate-600">開始估算預算跟聯絡供應商，確保活動能如期執行。</span>
+                                </button>
+                                <button onclick="selectOption(1, 'C')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">C</span>
+                                    <span class="font-medium text-slate-600">先停下來問：「目前有多少會員？目的是為了單次業績還是長期忠誠？」</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="quiz-q hidden" data-idx="2">
+                            <h2 class="text-2xl font-bold mb-8 leading-snug">在規劃預算分配時，如果你有一百萬，你會怎麼做？</h2>
+                            <div class="grid gap-4">
+                                <button onclick="selectOption(2, 'A')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">A</span>
+                                    <span class="font-medium text-slate-600">平均分配到 Meta 廣告、KOL 與線下贈品，確保每個管道都有顧到。</span>
+                                </button>
+                                <button onclick="selectOption(2, 'B')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">B</span>
+                                    <span class="font-medium text-slate-600">參考過去競爭對手的比例，跟著市場行情走，風險最小。</span>
+                                </button>
+                                <button onclick="selectOption(2, 'C')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">C</span>
+                                    <span class="font-medium text-slate-600">根據目標鎖定「關鍵戰場」，將 70% 資源投入高勝率環節，其餘測試。</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="quiz-q hidden" data-idx="3">
+                            <h2 class="text-2xl font-bold mb-8 leading-snug">你如何看待 AI 工具（如 ChatGPT, Midjourney）在企劃工作中的角色？</h2>
+                            <div class="grid gap-4">
+                                <button onclick="selectOption(3, 'A')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">A</span>
+                                    <span class="font-medium text-slate-600">它是我的「代寫員」，直接把生成的內容複製貼上，省時省力。</span>
+                                </button>
+                                <button onclick="selectOption(3, 'B')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">B</span>
+                                    <span class="font-medium text-slate-600">它是我的「美編或翻譯」，幫我把內容修飾得更漂亮。</span>
+                                </button>
+                                <button onclick="selectOption(3, 'C')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">C</span>
+                                    <span class="font-medium text-slate-600">它是我的「參謀長」，我負責邏輯框架，它填充資料，我決策校準。</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="quiz-q hidden" data-idx="4">
+                            <h2 class="text-2xl font-bold mb-8 leading-snug">當提案被老闆（或客戶）打槍說「這不可行」時，你通常會？</h2>
+                            <div class="grid gap-4">
+                                <button onclick="selectOption(4, 'A')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">A</span>
+                                    <span class="font-medium text-slate-600">感到沮喪，認為老闆不懂創意，再想三個新點子碰運氣。</span>
+                                </button>
+                                <button onclick="selectOption(4, 'B')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">B</span>
+                                    <span class="font-medium text-slate-600">試圖解釋技術細節，證明工具或素材是符合趨勢的。</span>
+                                </button>
+                                <button onclick="selectOption(4, 'C')" class="option-btn text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex gap-4 items-center group">
+                                    <span class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors">C</span>
+                                    <span class="font-medium text-slate-600">回到 SOSTAC® 的 S 與 O，分析邏輯落差點，重新對齊。</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Self Assessment Section -->
+            <section id="step-assessment" class="hidden-step step-transition">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-200">
+                    <div class="flex justify-between items-center mb-10">
+                        <span class="text-xs font-black text-indigo-600 tracking-widest uppercase">第二部分：自我核心能力盤點</span>
+                        <span class="text-xs font-bold text-slate-400 uppercase">Self Check</span>
+                    </div>
+                    
+                    <div class="space-y-12 mb-12">
+                        <!-- Skill 1 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <label class="font-bold text-lg">問題分析能力</label>
+                                <span id="val-1" class="text-indigo-600 font-black text-xl">3</span>
+                            </div>
+                            <p class="text-sm text-slate-400 mb-6 italic">「我能看穿現象，找到問題的核心病灶。」</p>
+                            <input type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" oninput="updateRangeVal(1, this.value)">
+                            <div class="flex justify-between text-xs text-slate-300 mt-2 font-bold uppercase">
+                                <span>工兵型</span>
+                                <span>指揮官型</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill 2 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <label class="font-bold text-lg">數據解讀能力</label>
+                                <span id="val-2" class="text-indigo-600 font-black text-xl">3</span>
+                            </div>
+                            <p class="text-sm text-slate-400 mb-6 italic">「我看報表不只是看數字，而是看未來的勝率。」</p>
+                            <input type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" oninput="updateRangeVal(2, this.value)">
+                            <div class="flex justify-between text-xs text-slate-300 mt-2 font-bold uppercase">
+                                <span>直覺型</span>
+                                <span>洞察型</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill 3 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <label class="font-bold text-lg">結構溝通能力</label>
+                                <span id="val-3" class="text-indigo-600 font-black text-xl">3</span>
+                            </div>
+                            <p class="text-sm text-slate-400 mb-6 italic">「我能用一頁企劃書，讓不同部門的人都聽懂我的邏輯。」</p>
+                            <input type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" oninput="updateRangeVal(3, this.value)">
+                            <div class="flex justify-between text-xs text-slate-300 mt-2 font-bold uppercase">
+                                <span>敘述型</span>
+                                <span>決策型</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateResult()" class="w-full bg-indigo-900 text-white font-black py-5 rounded-2xl hover:bg-indigo-950 transition-all shadow-xl flex justify-center items-center gap-2 group">
+                        查看鑑定結果 <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Result Section -->
+            <section id="step-result" class="hidden-step step-transition">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
+                    <div id="result-header" class="bg-indigo-900 p-10 text-center text-white">
+                        <div class="inline-block px-4 py-1 bg-indigo-500/30 rounded-full text-[10px] font-bold tracking-[0.2em] mb-4 uppercase">Diagnosis Report</div>
+                        <h2 id="result-title" class="text-4xl font-black mb-4 uppercase tracking-tight">策略指揮官</h2>
+                        <div class="flex justify-center items-baseline gap-2">
+                            <span class="text-indigo-300 text-sm font-bold">戰略戰鬥值：</span>
+                            <span id="combat-val" class="text-5xl font-black italic">88</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 md:p-12">
+                        <div class="mb-10">
+                            <h3 class="font-black text-indigo-900 text-xl mb-4 flex items-center gap-2">
+                                <div class="w-2 h-6 bg-indigo-600"></div>
+                                專業現況分析
+                            </h3>
+                            <p id="result-desc" class="text-slate-600 leading-relaxed text-lg">
+                                恭喜！妳已具備 Hybrid Talent 的雛形。妳懂得指揮工具，並對商業結果有判斷力。
+                            </p>
+                        </div>
+
+                        <div class="mb-12 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <h3 class="font-black text-indigo-900 text-xl mb-4">💡 進化方向建議</h3>
+                            <p id="result-advice" class="text-slate-600 leading-relaxed">
+                                妳需要的是「專業的驗證」與「國際接軌」。透過 TBSA 認證將妳的直覺轉化為標準化的專業資產。
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-center font-bold text-slate-400 text-sm tracking-widest uppercase mb-6">🚀 下一步進化路徑</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <a href="https://www.tbsa.tw/" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-indigo-600 transition-all group">
+                                    <div class="font-black text-indigo-900 mb-1">獲取專業認證</div>
+                                    <div class="text-xs text-slate-400">讓邏輯成為面試時的硬實力</div>
+                                </a>
+                                <a href="https://www.tbsa.tw/p/403-1141-506-1.php" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-indigo-600 transition-all group">
+                                    <div class="font-black text-indigo-900 mb-1">加入理事長 AI 小聚</div>
+                                    <div class="text-xs text-slate-400">看高手如何用邏輯指揮 AI</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 pt-8 border-t border-slate-100 text-center">
+                            <p class="text-sm text-slate-400 mb-6 font-medium italic">
+                                「真正的專業不是比誰用過更多 AI 工具，而是比誰能用最穩定的邏輯做出正確的決策。」
+                            </p>
+                            <button onclick="location.reload()" class="text-indigo-600 font-bold hover:underline">重新檢測</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2 opacity-50">
+                <div class="w-6 h-6 bg-slate-900 rounded flex items-center justify-center text-white text-[10px] font-bold italic">T</div>
+                <span class="font-black text-sm tracking-tighter text-slate-900">TBSA <span class="font-normal text-slate-400">Strategic Review</span></span>
+            </div>
+            <div class="text-slate-400 text-xs">
+                &copy; 2026 TBSA 台灣商務策劃協會. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let answers = { A: 0, B: 0, C: 0 };
+        let assessment = { 1: 3, 2: 3, 3: 3 };
+
+        function nextStep(currentId, nextId) {
+            const current = document.getElementById('step-' + currentId);
+            const next = document.getElementById('step-' + nextId);
+            
+            current.classList.remove('active-step');
+            setTimeout(() => {
+                current.classList.add('hidden-step');
+                next.classList.remove('hidden-step');
+                setTimeout(() => {
+                    next.classList.add('active-step');
+                }, 50);
+            }, 400);
+        }
+
+        function selectOption(qIdx, type) {
+            answers[type]++;
+            if (qIdx < 4) {
+                const currentQ = document.querySelector(`.quiz-q[data-idx="${qIdx}"]`);
+                const nextQ = document.querySelector(`.quiz-q[data-idx="${qIdx + 1}"]`);
+                
+                currentQ.classList.add('opacity-0');
+                setTimeout(() => {
+                    currentQ.style.display = 'none';
+                    nextQ.style.display = 'block';
+                    document.getElementById('quiz-progress').innerText = `Question ${qIdx + 1} / 4`;
+                    setTimeout(() => {
+                        nextQ.classList.remove('hidden');
+                        nextQ.classList.add('block');
+                    }, 50);
+                }, 300);
+            } else {
+                nextStep('quiz', 'assessment');
+            }
+        }
+
+        function updateRangeVal(id, val) {
+            assessment[id] = parseInt(val);
+            document.getElementById('val-' + id).innerText = val;
+        }
+
+        function calculateResult() {
+            // Determine result based on choice dominance
+            let finalType = 'A';
+            if (answers.B >= answers.A && answers.B >= answers.C) finalType = 'B';
+            if (answers.C >= answers.A && answers.C >= answers.B) finalType = 'C';
+
+            // Calculate Combat Value (0-100)
+            // Choice weights: A=10, B=15, C=20. Max quiz score = 80.
+            // Assessment: 1-5, weights: x2. Max assessment score = 30.
+            // Normalizing to roughly 100 max.
+            let quizScore = (answers.A * 10) + (answers.B * 15) + (answers.C * 20);
+            let assessmentScore = (assessment[1] + assessment[2] + assessment[3]) * 2;
+            let total = quizScore + assessmentScore;
+            // Cap at 99 for a strategic feel unless perfect
+            let combatVal = Math.min(total, 100);
+
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+            const resultAdvice = document.getElementById('result-advice');
+            const resultHeader = document.getElementById('result-header');
+
+            if (finalType === 'A') {
+                resultTitle.innerText = "技術型工兵";
+                resultHeader.className = "bg-slate-700 p-10 text-center text-white";
+                resultDesc.innerText = "妳很勤奮，且具備基本的工具操作力。但在 AI 時代，妳最容易感到焦慮，因為妳的產出正逐漸被自動化工具取代。";
+                resultAdvice.innerText = "妳需要建立「商務企劃能力」的底層 OS。建議從 TBSA 初級檢定開始，學習如何從執行者轉型為思考者。";
+            } else if (finalType === 'B') {
+                resultTitle.innerText = "資深執行官";
+                resultHeader.className = "bg-indigo-700 p-10 text-center text-white";
+                resultDesc.innerText = "妳非常可靠，能完成交付的任務。但妳往往陷於「怎麼做」的泥淖，較難主導策略方向，導致職涯遇到瓶頸。";
+                resultAdvice.innerText = "妳需要提升「戰略審視力」。TBSA 進階檢定的五大表單能幫助妳將經驗「格式化」，建立跨產業的溢價能力。";
+            } else {
+                resultTitle.innerText = "策略指揮官";
+                resultHeader.className = "bg-indigo-900 p-10 text-center text-white";
+                resultDesc.innerText = "恭喜！妳已具備 Hybrid Talent 的雛形。妳懂得指揮工具，並對商業結果有判斷力。";
+                resultAdvice.innerText = "妳需要的是「專業的驗證」與「國際接軌」。透過 TBSA 認證將妳的直覺轉化為標準化的專業資產。";
+            }
+
+            document.getElementById('combat-val').innerText = combatVal;
+            nextStep('assessment', 'result');
+        }
+    </script>
+</body>
+</html>
